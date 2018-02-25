@@ -21,6 +21,8 @@ EasyRider is based off of the Model View Controller(MVC) architectural layout an
 
 ## Contact
 Srum Master Name: Andrew Cowden
+
 Phone: 815-592-5024
+
 Email: am.cowden.97@gmail.com
 
