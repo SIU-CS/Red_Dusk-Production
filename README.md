@@ -32,3 +32,9 @@ Phone: 815-351-4651
 
 Email: michaelm536@siu.edu
 
+Team Member Name: Justin Sieling
+
+Phone: 815-931-1472
+
+Email: jmsieling@siu.edu
+
