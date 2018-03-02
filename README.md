@@ -26,3 +26,21 @@ Phone: 815-592-5024
 
 Email: am.cowden.97@gmail.com
 
+Team Member Name: Michael Mueller
+
+Phone: 815-351-4651
+
+Email: michaelm536@siu.edu
+
+Team Member Name: Justin Sieling
+
+Phone: 815-931-1472
+
+Email: jmsieling@siu.edu
+
+Team Member Name: Michael ley
+
+Phone: 224-688-2867
+
+Email: michael.ley@siu.edu
+
