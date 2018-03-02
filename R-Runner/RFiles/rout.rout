@@ -1,0 +1,14 @@
+> 
+> 
+> n <- floor(runif(1000)*10)
+> t <- table(n)
+> 
+> png(filename="somedumbgraph.png")
+> barplot(t)
+> dev.off()
+null device 
+          1 
+> 
+> proc.time()
+   user  system elapsed 
+   0.17    0.09    0.25 
