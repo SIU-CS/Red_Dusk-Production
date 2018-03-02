@@ -7,7 +7,6 @@ This repository holds the basic form of the EasyRider Online R IDE. EasyRider al
 ## Technologies
 EasyRider relies on the following open-source technologies for proper installation when replicating this project.
 
-* Renjin R interpreter library for Java
 * MySQL Relational Database Management System
 * Apache HTTP Webserver
 * Apache Tomcat Webcontainer
