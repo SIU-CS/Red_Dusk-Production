@@ -1,14 +1,4 @@
-> 
-> 
-> n <- floor(runif(1000)*10)
-> t <- table(n)
-> 
-> png(filename="somedumbgraph.png")
-> barplot(t)
-> dev.off()
+Loading required package: DBI
 null device 
           1 
-> 
-> proc.time()
-   user  system elapsed 
-   0.43    0.18    0.93 
+x + y =  35x + y =  35x + y =  35

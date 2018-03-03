@@ -5,6 +5,10 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.ProcessBuilder.Redirect;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.BufferedReader;
+
 /**
  * Acts as a driver program that acts as an interface to run R scripts from
  * the server.
@@ -32,8 +36,13 @@ public class Rdriver {
 	 * style of : Rdriver CWD inputFile outputFile
 	 * 
 	 * NOTE:: For testing, supply arguments RFiles\\ Rscript.R rout.rout
+	 * @throws InterruptedException : If the R Runner Script is interrupted mid Execution
 	 */
-	public static void main(String[] args){
+	public static void main(String[] args) throws InterruptedException{
+		//------------------------------------------------------------------------------------
+		//TAKES ARGUMENTS AND RUNS SPECIFIED RSCRIPT IN SPECIFIED CWD TO SPECIFIED OUTPUT FILE
+		//------------------------------------------------------------------------------------
+		
 		//Trys to run the program without failure to build the process and with the
 		//correct number of arguments.
 		try{
@@ -44,13 +53,13 @@ public class Rdriver {
 			//Generates a generally useless log file :/
 			logFile = new File("logFile.txt");
 			
-			//Uses arguments to generate CWD, inputFile, and outputFile for the rBuilder.
+			//Uses arguments to generate CWD, inputFileName, and outputFileName for the rBuilder.
 			sessionDir = new File(args[0]);
-			String inputFile = args[1];
-			String outputFile = args[2];
+			String inputFileName = args[1];
+			String outputFileName = args[2];
 			
 			//Process builder that constructs the process necessary to run R.
-			ProcessBuilder rBuilder = new ProcessBuilder(rProgLocale, "CMD", "BATCH", "--quiet", "--vanilla", inputFile, outputFile);
+			ProcessBuilder rBuilder = new ProcessBuilder(rProgLocale, "CMD", "BATCH", "--slave", "--vanilla", inputFileName, outputFileName);
 
 			//Sets CWD and vainly attempts to set up a logfile.
 			rBuilder.directory(sessionDir);
@@ -59,7 +68,43 @@ public class Rdriver {
 			//Runs the process after full construction.
 			Process rRunner = rBuilder.start();
 			
-			//TO DO CLEAN UP THE OUTPUT FILE
+			//------------------------------------------------------------------------------------
+			//CLEANS UP THE OUTPUT FILE'S UNNECESSARY FOOTER
+			//------------------------------------------------------------------------------------
+			
+			//Insure that the above process has fully executed and the output file is complete
+			rRunner.waitFor();
+			
+			//Creates the CWD string, outputFile object, and the fileReader to begin
+			//file clean up.
+			String CWD = args[0];
+			File outputFile = new File(CWD+outputFileName);
+			BufferedReader fileReader = new BufferedReader(new FileReader(outputFile));
+			
+			//Reads the first line and sets the newFileContents to an empty string
+			//to finish priming the file cleanup.
+			String lineRead = fileReader.readLine();
+			String newFileContents = "";
+			
+			//While there is morel lines to process...
+			while(lineRead != null){
+				//System.out.println(lineRead); //DEBUGGING::PRINTS OUTPUT RAW
+				//Append to newFileContents the line and its newline character
+				newFileContents = newFileContents + lineRead+System.lineSeparator();
+				//Read the next line of input
+				lineRead = fileReader.readLine();
+			}
+			//Removes the footer "proc.time()" call that ends every execution.
+			newFileContents = newFileContents.substring(0, newFileContents.lastIndexOf("> proc.time()"));
+			//System.out.println(newFileContents); //DEBUGGING PRINTS PROCESSED OUTPUT
+			
+			//Create a file writer and write tidied-up output to outputFile.
+			FileWriter fileCleaner = new FileWriter(outputFile);
+			fileCleaner.write(newFileContents);
+			
+			//Close the reader and writer
+			fileReader.close();
+			fileCleaner.close();
 			
 		}catch (IOException e){
 			e.printStackTrace();
