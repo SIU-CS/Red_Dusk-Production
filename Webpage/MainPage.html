@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<script src="FileReaderLogic.js"></script>
+<title>Login Page</title>
+</head>
+
+<style>
+table, th, td {
+    border: 1px solid black;
+	table-layout: fixed;
+}
+table { table-layout: fixed;
+}
+td { width: 100; 
+}
+th {
+	text-align: center;
+}
+textarea {
+   resize: none;
+   overflow-y: scroll;
+   overflow-x: scroll;
+}
+#filecontents { 
+          width: 100%;
+     } 
+</style>
+
+<body>
+
+<h1 style="color:Red">Easy Rider</h1>
+<p> Github: 
+<a href="https://github.com/SIU-CS/Red_Dusk-Production">https://github.com/SIU-CS/Red_Dusk-Production</a><br/>
+</p>
+<hr>
+
+<table style="width:100%">
+  <tr >
+    <th>Code</th>
+	<th>Output</th>
+  </tr>
+  <tr style="width:100%">
+    <td><textarea id="filecontents" class="scrollabletextbox" rows="35" placeholder="Enter Code Here..."></textarea></td>
+    <td><textarea readonly id="box2" class="scrollabletextbox" style="width:100%" rows="35" placeholder="Output Appears Here..."></textarea></td> 
+  </tr>
+  <tr style="width:100%">
+    <td>
+		Choose local file to upload
+		<input type="file" id="txtfiletoread"/>	
+	</td>
+	<td></td>
+  </tr>
+  <tr style="width:100%">
+    <td>
+		Choose file saved to your account
+		<select>
+			<option value="volvo">File1.R</option>
+			<option value="saab">File2.R</option>
+			<option value="mercedes">File3.R</option>
+			<option value="audi">File4.R</option>
+		</select>
+	</td>
+    <td></td>
+	</form>
+  </tr>
+</table>
+
+</body>
+</html>
