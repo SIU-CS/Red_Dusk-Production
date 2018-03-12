@@ -59,7 +59,7 @@ public class Rdriver {
 			String outputFileName = args[2];
 			
 			//Process builder that constructs the process necessary to run R.
-			ProcessBuilder rBuilder = new ProcessBuilder(rProgLocale, "CMD", "BATCH", "--slave", "--vanilla", inputFileName, outputFileName);
+			ProcessBuilder rBuilder = new ProcessBuilder(rProgLocale, "CMD", "BATCH" , "--slave", "--vanilla", inputFileName, outputFileName);
 
 			//Sets CWD and vainly attempts to set up a logfile.
 			rBuilder.directory(sessionDir);
