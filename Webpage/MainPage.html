@@ -25,6 +25,11 @@ textarea {
 #filecontents { 
           width: 100%;
      } 
+#console { 
+          width: 100%;
+		  background-color: black;
+		  color: white;
+     } 
 </style>
 
 <body>
@@ -41,15 +46,23 @@ textarea {
 	<th>Output</th>
   </tr>
   <tr style="width:100%">
-    <td><textarea id="filecontents" class="scrollabletextbox" rows="35" placeholder="Enter Code Here..."></textarea></td>
-    <td><textarea readonly id="box2" class="scrollabletextbox" style="width:100%" rows="35" placeholder="Output Appears Here..."></textarea></td> 
+    <td><textarea id="filecontents" class="scrollabletextbox" rows="30" placeholder="Enter Code Here..."></textarea></td>
+    <td><textarea readonly id="box2" class="scrollabletextbox" style="width:100%" rows="30" placeholder="Output Appears Here..."></textarea></td> 
+  </tr>
+  <tr >
+    <th colspan="2">Console</th>
+  </tr>
+  <tr style="width:100%">
+    <td colspan="2"><textarea id="console" class="scrollabletextbox" rows="12" placeholder="This is used as an R console for the user..."></textarea></td> 
   </tr>
   <tr style="width:100%">
     <td>
 		Choose local file to upload
 		<input type="file" id="txtfiletoread" accept=".r, .txt"/>	
 	</td>
-	<td></td>
+	<td>
+		<button>Compile</button>
+	</td>
   </tr>
   <tr style="width:100%">
     <td>
@@ -61,7 +74,9 @@ textarea {
 			<option value="audi">File4.R</option>
 		</select>
 	</td>
-    <td></td>
+    <td>
+		<button>Save file to your account</button>
+	</td>
 	</form>
   </tr>
 </table>
