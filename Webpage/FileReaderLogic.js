@@ -4,11 +4,11 @@ window.onload = function () {
     var fileSelected = document.getElementById('txtfiletoread');
     fileSelected.addEventListener('change', function (e) { 
          //Set the extension for the file 
-         var fileExtension = /text.*/; 
+         var fileExtension = "application/octet-stream"; 
          //Get the file object 
          var fileTobeRead = fileSelected.files[0];
         //Check of the extension match 
-         if (fileTobeRead.type.match(fileExtension)) { 
+         if (fileTobeRead.type.match('application/octet-stream')) { 
              //Initialize the FileReader object to read the 2file 
              var fileReader = new FileReader(); 
              fileReader.onload = function (e) { 
@@ -18,7 +18,7 @@ window.onload = function () {
              fileReader.readAsText(fileTobeRead); 
          } 
          else { 
-             alert("Please select text file"); 
+             alert("Please select an R file"); 
          }
  
     }, false);
