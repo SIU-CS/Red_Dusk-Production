@@ -8,7 +8,6 @@ window.onload = function () {
          //Get the file object 
          var fileTobeRead = fileSelected.files[0];
         //Check of the extension match 
-         if (fileTobeRead.type.match('application/octet-stream')) { 
              //Initialize the FileReader object to read the 2file 
              var fileReader = new FileReader(); 
              fileReader.onload = function (e) { 
@@ -16,11 +15,6 @@ window.onload = function () {
                  fileContents.innerText = fileReader.result; 
              } 
              fileReader.readAsText(fileTobeRead); 
-         } 
-         else { 
-             alert("Please select an R file"); 
-         }
- 
     }, false);
 } 
  else { 
