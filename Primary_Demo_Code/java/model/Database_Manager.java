@@ -1,14 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package model;
 
-/**
- *
- * @author amcowden97
- */
+package model;
+import java.sql.*;
+
 public class Database_Manager {
+    
+    public static final String SQLUSERNAME = "root";   //IMPORTANT:: Change to configuration
+    public static final String SQLPASSWORD = "root";   //file in real use for security
+    
     
 }
