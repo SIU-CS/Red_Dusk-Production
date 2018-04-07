@@ -1,0 +1,47 @@
+#editor {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+}
+
+#container{
+    padding: 50%;
+    position: relative;
+}
+
+
+#editor_text{
+    
+}
+
+table, th, td {
+    border: 1px solid black;
+    table-layout: fixed;
+}
+    
+table { 
+    table-layout: fixed;
+}
+    
+td { 
+    width: 100%; 
+}
+    
+th {
+    text-align: center;
+}
+    
+textarea {
+    resize: none;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    border: none;
+    width: 100%;
+    height: 100;
+}
+    
+#filecontents { 
+    width: 100%;
+}
