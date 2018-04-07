@@ -1,55 +1,35 @@
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <script src="JavaScript/FileReaderLogic.js"></script>
-        <link rel="stylesheet" type="text/css" href="Cascading_Style_Sheets/index_style_sheet.css">
-        <title>Home Page</title>
+        <title>Login Page</title>
+        <link rel="stylesheet" type="text/css" href="Cascading_Style_Sheets/login_style_sheet.css">
     </head>
 
     <body>
-        <h1>Easy Rider</h1>
+        <h1>EASY RIDER</h1>
+        <div id="mainContent">
+            <div id="loginDiv">
+                <form action="Login_Servlet" method="POST">
+                    <h2>Login</h2>
+                    <table>
+                        <tr> <td colspan="2"> <input type="text" name="username" placeholder="username"> </td></tr>
+                        <tr> <td colspan="2"> <input type="text" name="password" placeholder="password"> </td></tr>
+                        <tr> <td> <input type="submit" name="loginBtn" value="Enter" class="btn"> </td> 
+                            <td> <a href = "Forgot_Password.html">Forgot Password</a></td></tr>
+                    </table>
+                </form>
+  
+            </div>
 
-        <p> Github: <a href="https://github.com/SIU-CS/Red_Dusk-Production">
-                https://github.com/SIU-CS/Red_Dusk-Production</a><br/>
-        </p>
-        
-        <hr>
-
-        <form action="Interpreter_Servlet" method="POST">
-            <table style="width:100%">
-                <tr>
-                    <th>Code</th>
-                    <th>Output</th>
-                </tr>
-                <tr style="width:100%">
-                    <td><textarea id="filecontents" class="scrollabletextbox" name = "r_input" 
-                                  rows="35" placeholder="Enter Code Here..."></textarea></td>
-                    <td><textarea readonly id="box2" class="scrollabletextbox" style="width:100%" 
-                                  rows="35" placeholder="Output Appears Here..."></textarea></td> 
-                </tr>
-                <tr style="width:100%"> 
-                    <td> <input type ="submit" value="Submit"> </td>
-                </tr>
-                <tr style="width:100%">
-                    <td> 
-                        Choose local file to upload
-                        <input type="file" id="txtfiletoread"/>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr style="width:100%">
-                    <td>
-                        Choose file saved to your account
-                        <select>
-                            <option value="volvo">File1.R</option>
-                            <option value="saab">File2.R</option>
-                            <option value="mercedes">File3.R</option>
-                            <option value="audi">File4.R</option>
-                        </select>
-                    </td>
-                    <td></td>
-                </tr>
-            </table>
-        </form>
+            <div id="otherDiv">
+                <h2>New User</h2>
+                <form action="Login_Servlet" method="POST">
+                    <table>
+                        <tr> <td> <input type="submit" name="guestBtn" value="Continue as Guest" class="btn"> </td> </tr>
+                        <tr> <td> <input type="submit" name="accountBtn" value="Create Account" class="btn"> </td> </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
     </body>
 </html>
