@@ -13,8 +13,11 @@
                     <h2>Login</h2>
                     <table>
                         <tr> <td colspan="2"> <input type="text" name="username" placeholder="username"> </td></tr>
-                        <tr> <td colspan="2"> <input type="text" name="password" placeholder="password"> </td></tr>
-                        <tr> <td> <input type="submit" name="loginBtn" value="Enter" class="btn"> </td> 
+                        <tr> <td colspan="2"> <input type="text" id="input" name="password" placeholder="password"> </td></tr>
+                        <tr> <td> <input type="submit" name="loginBtn" value="Enter" class="btn" 
+                                         onclick="function(){
+                                             hash = sha256(document.getElementById('input').value);
+                                         }"> </td> 
                             <td> <a href = "Forgot_Password.html">Forgot Password</a></td></tr>
                     </table>
                 </form>
@@ -26,7 +29,8 @@
                 <form action="Login_Servlet" method="POST">
                     <table>
                         <tr> <td> <input type="submit" name="guestBtn" value="Continue as Guest" class="btn"> </td> </tr>
-                        <tr> <td> <input type="submit" name="accountBtn" value="Create Account" class="btn"> </td> </tr>
+                        <tr> <td> <input type="button" name="accountBtn" value="Create Account" class="btn" 
+                                         onclick="window.location.href='Create_Account.jsp'"> </td> </tr>
                     </table>
                 </form>
             </div>

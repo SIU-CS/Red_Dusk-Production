@@ -7,18 +7,13 @@ window.onload = function () {
             var fileExtension = /text.*/;
             //Get the file object 
             var fileTobeRead = fileSelected.files[0];
-            //Check of the extension match 
-            if (fileTobeRead.type.match(fileExtension)) {
-                //Initialize the FileReader object to read the 2file 
-                var fileReader = new FileReader();
-                fileReader.onload = function (e) {
-                    var fileContents = document.getElementById('filecontents');
-                    fileContents.innerText = fileReader.result;
-                }
-                fileReader.readAsText(fileTobeRead);
-            } else {
-                alert("Please select an R file");
+            //Initialize the FileReader object to read the 2file 
+            var fileReader = new FileReader();
+            fileReader.onload = function (e) {
+                var editor = ace.edit("editor");
+                document.getElementById("code_input").innerHTML = editor.setValue(fileReader.result);
             }
+            fileReader.readAsText(fileTobeRead);
 
         }, false);
     } else {

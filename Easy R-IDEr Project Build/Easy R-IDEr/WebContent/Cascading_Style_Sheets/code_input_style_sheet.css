@@ -2,35 +2,45 @@ body, html{
     height: 100%;
     width: 100%;
     margin: 0;
-    background-color: black;
+    background-color: #333333;
+    overflow: hidden;
+}
+
+h1{
+    font-family: Helvetica;
+    color: white;
 }
 
 #main_content{
-    background-color: red;
     width: 100%;
     height: 100%;    
 }
 
 #btn_container{
     width: 100%;
+    background-color: #8c8c8c;
+    padding: .25%;
+    margin-top: 1%;
+    margin-bottom: 2%;
 }
 
 #output_container {
-    background-color: white;
+    background-color: #141414;
     float: right;
-    min-width: 50%;
+    min-width: 49%;
     min-height: 50%;
-    width: 50%;
-    height: 80%;
+    width: 49%;
+    height: 76%;
 }
 
 #editor_container {
-    background-color: yellow;
+    background-color: #141414;
     float: left;
-    min-width: 50%;
+    min-width: 49%;
     min-height: 50%;
-    width: 50%;
-    height: 80%;
+    width: 49%;
+    height: 76%;
+    padding-right: 1%;
 }
 
 #editor{
@@ -45,12 +55,13 @@ body, html{
     height: 100%;
 }
 
-#code_input{
+#code_input{ 
     display: none;
 }
 
 #code_output{
-    background-color: white;
+    background-color: #141414;
+    color: ghostwhite;
     resize: none;
     min-width: 95%;
     min-height: 95%;
@@ -59,4 +70,8 @@ body, html{
     width: 95%;
     height: 95%;
     border: none;
+}
+
+.invisibleBtn{
+    display: none;
 }
