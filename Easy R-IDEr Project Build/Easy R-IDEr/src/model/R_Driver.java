@@ -54,7 +54,7 @@ public class R_Driver {
     	if(OS.toLowerCase().indexOf("win")>=0) {
     		RPROGLOCAL = RPROGLOCAL_WIN;
     		CWD = CWD_WIN+userId+"\\";
-    	}else if(OS.toLowerCase().indexOf("nix")>=0){
+    	}else if(OS.toLowerCase().indexOf("nux")>=0){
     		RPROGLOCAL = RPROGLOCAL_NIX;
     		CWD = CWD_NIX+userId+"/";
     	}else {

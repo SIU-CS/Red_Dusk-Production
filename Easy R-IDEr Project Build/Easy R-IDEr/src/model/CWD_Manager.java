@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.tomcat.util.http.fileupload.FileItem;
 
 public class CWD_Manager {
 
@@ -31,7 +32,7 @@ public class CWD_Manager {
     	if(OS.toLowerCase().indexOf("win")>=0) {
     		RPROGLOCAL = RPROGLOCAL_WIN;
     		CWD = CWD_WIN+userId+"\\";
-    	}else if(OS.toLowerCase().indexOf("nix")>=0){
+    	}else if(OS.toLowerCase().indexOf("nux")>=0){
     		RPROGLOCAL = RPROGLOCAL_NIX;
     		CWD = CWD_NIX+userId+"/";
     	}else {
@@ -55,6 +56,12 @@ public class CWD_Manager {
         }
         return fileName;
     }
+    
+    
+    public boolean writeCSV(FileItem item){
+        System.out.println("We got here boys...");
+        return true;
+    }
 
     private String getFileHandle(fileType type) {
         if (type == fileType.R_FILE) {
@@ -76,7 +83,7 @@ public class CWD_Manager {
     	if(OS.toLowerCase().indexOf("win")>=0) {
     		RPROGLOCAL = RPROGLOCAL_WIN;
     		CWD = CWD_WIN+userId;
-    	}else if(OS.toLowerCase().indexOf("nix")>=0){
+    	}else if(OS.toLowerCase().indexOf("nux")>=0){
     		RPROGLOCAL = RPROGLOCAL_NIX;
     		CWD = CWD_NIX+userId;
     	}else {
@@ -84,7 +91,7 @@ public class CWD_Manager {
     		CWD = null;
     	}
     	File targetDir = new File(CWD);
-    	//nukeDir(targetDir);
+    	nukeDir(targetDir);
     }
     
     private void nukeDir(File targetDir) {

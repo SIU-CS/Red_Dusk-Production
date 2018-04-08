@@ -2,6 +2,9 @@
 package controller;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +14,24 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "Account_Creation_Servlet", urlPatterns = {"/Account_Creation_Servlet"})
 public class Account_Creation_Servlet extends HttpServlet {
 
+    /**
+     *
+     * @param config
+     * @throws ServletException
+     */
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+
+        //Create Database Driver
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Login_Servlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,6 +59,7 @@ public class Account_Creation_Servlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         processRequest(request, response);
     }
 }

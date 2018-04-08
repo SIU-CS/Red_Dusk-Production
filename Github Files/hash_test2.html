@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+</head>
+
+<body>
+
+
+<script src="sha256.min.js"></script> 
+<textarea id="input" rows="5">abc</textarea> <!-- this 'input' will be the password field of the create account or login -->
+<p/>
+<input id="button" type="button" value="calculate"> 
+<p/>
+<script>
+var hash = 0; //return the hash as the value sent
+//Then, check this value with the stored value if logging in
+</script>
+
+
+<script>
+				document.getElementById('button').onclick = function () {
+					hash = sha256(document.getElementById('input').value);
+				};
+			</script>
+
+</body>
+</html>
