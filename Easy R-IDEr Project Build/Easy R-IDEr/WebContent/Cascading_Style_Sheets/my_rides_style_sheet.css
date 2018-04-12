@@ -58,6 +58,18 @@ nav ul li a:hover {
   color: ghostwhite;
 }
 
+div {
+    margin: auto;
+}
+
+/* Style the container for inputs */
+.container {
+    background-color: #f1f1f1;
+    padding: 10px;
+	width: 50%;
+	
+}
+
 @font-face{
     font-family: LogoFont;
    	src: url(../Fonts/Exo.otf);
