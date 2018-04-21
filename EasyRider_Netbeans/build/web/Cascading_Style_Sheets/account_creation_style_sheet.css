@@ -1,0 +1,143 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    background: url("../Images/road_background.jpg") no-repeat 50% 50% fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -webkit-background-size: cover;
+
+}
+
+h1{
+    color: ghostwhite;
+    margin: 0;
+    height: 15%;
+    letter-spacing: 1.2px;
+    font-family: LogoFont;
+    text-align: center;
+    font-size: 60px;
+    width: 100%;
+	border: 0;
+	padding: 0;
+	display: inline;
+
+}
+
+nav {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  top: 0;
+}
+
+nav ul {
+  text-align: center;
+  list-style: outside none none;
+  padding: 0px;
+  margin-top: 0px;
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+nav ul li a {
+  padding-left: 16px;
+  padding-right: 16px;
+  font-family: "Open Sans";
+  color: ghostwhite;
+  font-size: 18px;
+  text-decoration: none;
+  display: block;
+}
+
+nav ul li a:hover {
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.1);
+  color: ghostwhite;
+}
+
+@font-face{
+    font-family: LogoFont;
+   	src: url(../Fonts/Exo.otf);
+}
+
+
+form { 
+	margin: 0 auto; 
+	width:250px;
+	text-align: center;
+}
+
+/* Style all input fields */
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 2px;
+    margin-bottom: 5px;
+	position: center; 
+}
+
+/* Style the submit button */
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+	width: 50%;
+	position: center;
+}
+
+div {
+    margin: auto;
+}
+
+/* Style the container for inputs */
+.container {
+    background-color: #f1f1f1;
+    padding: 10px;
+	width: 50%;
+	
+}
+
+/* The message box is shown when the user clicks on the password field */
+#message {
+	width: 50%;
+    display:none;
+    background: #f1f1f1;
+    color: #000;
+    margin:0 auto;
+    padding: 10px;
+    margin-top: 4px;
+}
+
+#message p {
+    padding: 5px 35px;
+    font-size: 14px;
+}
+
+
+/* -----------------------------Required CSS----------------------------------- */
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+    color: green;
+}
+
+.valid:before {
+    position: relative;
+    left: -35px;
+    content: "\2713";
+}
+
+/* Add a red text color and an "x" icon when the requirements are wrong */
+.invalid {
+    color: red;
+}
+
+.invalid:before {
+    position: relative;
+    left: -35px;
+    content: "X";
+}

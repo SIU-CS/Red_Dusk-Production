@@ -1,0 +1,83 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    background: url("../Images/road_background.jpg") no-repeat 50% 50% fixed;
+    background-size: cover;
+    overflow: hidden;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -webkit-background-size: cover;
+
+}
+
+h1{
+    color: ghostwhite;
+    margin: 0;
+    margin-bottom: 8%;
+    height: 15%;
+    letter-spacing: 1.2px;
+    font-family: LogoFont;
+    text-align: center;
+    font-size: 60px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+
+}
+
+table{
+    padding: 5%;
+    font-family: monospace;
+}
+
+td{
+    padding-top: 5%;
+}
+
+h2{
+    font-family: monospace;
+    margin: 0 auto;
+    color: ghostwhite;
+    text-align: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    background-color: darkslategrey;
+    width: 100%;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.submitBtn{
+    font-family: monospace;
+    background-color: darkslategrey; 
+    color: ghostwhite;
+    padding-top: 3%;
+    padding-left: 6%;
+} 
+
+#loginDiv{
+    background-color: ghostwhite;
+    width: 20%;
+    flex: 1;
+    margin-right: 3%;
+    border-radius: 6px;
+}
+
+#otherDiv{
+     background-color: ghostwhite;
+     width: 20%;
+     float: right;
+     flex: 1;
+     border-radius: 6px;
+}
+
+#mainContent{
+    display: flex;
+    width: 50%;
+    margin: auto;
+}
+
+@font-face{
+    font-family: LogoFont;
+   	src: url(../Fonts/Exo.otf);
+}
+
