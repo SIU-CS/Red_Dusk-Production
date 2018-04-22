@@ -21,7 +21,7 @@ public class CWD_Manager {
     private final String RPROGLOCAL_NIX = "/usr/bin/R";
     private final String CWD_NIX = "/home/amcowden97/Workspaces/tempDir/";
     private final String RPROGLOCAL_WIN = "C:\\Program Files\\R\\R-3.4.3\\bin\\i386\\R.exe";
-    private final String CWD_WIN = "C:\\Red_Dusk-Production\\Easy R-IDEr Project Build\\Easy R-IDEr\\R-Workspace\\";
+    private final String CWD_WIN = "C:\\Red_Dusk-Production\\Source_Code\\R-Workspace\\";
     private static long rFileTally;
     private static long plotFileTally;
 
