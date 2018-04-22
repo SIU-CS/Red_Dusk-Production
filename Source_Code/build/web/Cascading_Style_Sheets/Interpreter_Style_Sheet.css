@@ -1,0 +1,108 @@
+body, html{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: #333333;
+    overflow: hidden;
+}
+
+h1{
+    font-family: Helvetica;
+    color: white;
+}
+
+#main_content{
+    width: 100%;
+    height: 100%;    
+}
+
+#btn_container{
+    width: 100%;
+    background-color: #8c8c8c;
+    margin-bottom: .5%;
+}
+
+#output_container {
+    background-color: #141414;
+    float: right;
+    min-width: 49%;
+    min-height: 50%;
+    width: 49%;
+    height: 76%;
+}
+
+#editor_container {
+    background-color: #141414;
+    float: left;
+    min-width: 49%;
+    min-height: 50%;
+    width: 49%;
+    height: 76%;
+    padding-right: 1%;
+}
+
+#tab_container{
+    width: 100%;
+    min-width: 100%;
+    padding-bottom: .25%;
+}
+
+#editor{
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: relative;
+    min-width: 100%;
+    min-height: 100%;
+    width: 100%;
+    height: 100%;
+}
+
+#code_input{ 
+    display: none;
+}
+
+#code_output{
+    background-color: #141414;
+    color: ghostwhite;
+    resize: none;
+    min-width: 95%;
+    min-height: 95%;
+    max-width: 100%;
+    max-height: 100%;
+    width: 95%;
+    height: 95%;
+    border: none;
+}
+
+.invisibleBtn{
+    display: none;
+}
+
+
+.tablink {
+    background-color: #555;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 17px;
+    width: 25%;
+}
+
+.tablink:hover {
+    background-color: #777;
+}
+
+
+.tabcontent {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+img{
+    width: 10%;
+    height: 10%;    
+}
