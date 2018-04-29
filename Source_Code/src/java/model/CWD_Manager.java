@@ -11,31 +11,26 @@ import javax.activation.MimetypesFileTypeMap;
 import org.apache.tomcat.util.http.fileupload.FileItem;
 
 public class CWD_Manager {
-
     enum fileType {
         R_FILE, PLOT_FILE
     }
 
-    public final String R_EXTEN = "-RFILE.R";
+    public final String R_HANDLE = "RFILE.R";
     public final String PLOT_EXTEN = "-PLOT.png";
-    private final String RPROGLOCAL_NIX = "/usr/bin/R";
-    private final String CWD_NIX = "/home/amcowden97/Workspaces/tempDir/";
-    private final String RPROGLOCAL_WIN = "C:\\Program Files\\R\\R-3.4.3\\bin\\i386\\R.exe";
-    private final String CWD_WIN = "C:\\Red_Dusk-Production\\Source_Code\\R-Workspace\\";
+    private final String CWD = "/bin/Red_Dusk-Production/Source_Code/R_Workspace/";
     private static long rFileTally;
     private static long plotFileTally;
-
+    
     public String writeRToFile(String recievedRCode, String userId) {
         //Locations of Current Working Directory and R terminal
-        String RPROGLOCAL = getRLocation();
-        String CWD = getCWD(userId);
-
-        new File(CWD).mkdir();
-
+        String userSessionDir = getCWD(userId);
+        
+        new File(userSessionDir).mkdir();
+        
         FileWriter writer;
         String fileName = null;
         try {
-            fileName = CWD + getFileHandle(fileType.R_FILE);
+            fileName = userSessionDir + getFileHandle(fileType.R_FILE);
             File inputFile = new File(fileName);
             writer = new FileWriter(inputFile);
             writer.write(recievedRCode);
@@ -56,9 +51,9 @@ public class CWD_Manager {
     
     public ArrayList<String> getPlotList(String userId) {
         ArrayList<String> picList = new ArrayList();
-        String CWD = getCWD(userId);
+        String userSessionDir = getCWD(userId);
 
-        File[] files = new File(CWD).listFiles();
+        File[] files = new File(userSessionDir).listFiles();
 
         //Find the Names of All Image Files in a Directory
         for (File file : files) {
@@ -73,11 +68,11 @@ public class CWD_Manager {
 
     
     public byte[] getPlot(String plotName, String userId) {
-        String CWD = getCWD(userId);
+        String userSessionDir = getCWD(userId);
         
         try {
-            File fi = new File(CWD + plotName);
-            System.out.println(CWD + plotName);
+            File fi = new File(userSessionDir + plotName);
+            System.out.println(userSessionDir + plotName);
             return Files.readAllBytes(fi.toPath());
         } catch (IOException ex) {
             return null;
@@ -87,8 +82,7 @@ public class CWD_Manager {
     
     private String getFileHandle(fileType type) {
         if (type == fileType.R_FILE) {
-            rFileTally++;
-            return rFileTally + R_EXTEN;
+            return R_HANDLE;
         } else if (type == fileType.PLOT_FILE) {
             plotFileTally++;
             return plotFileTally + PLOT_EXTEN;
@@ -98,10 +92,9 @@ public class CWD_Manager {
 
     
     public void killSession(String userId) {
-        String RPROGLOCAL = getRLocation();
-        String CWD = getCWD(userId);
+        String userSessionDir = getCWD(userId);
 
-        File targetDir = new File(CWD);
+        File targetDir = new File(userSessionDir);
         nukeDir(targetDir);
     }
 
@@ -121,30 +114,8 @@ public class CWD_Manager {
     
     private String getCWD(String userId) {
         String OS = System.getProperty("os.name");
-        String CWD;
+        String userSessionDir = CWD + userId + "/";
 
-        if (OS.toLowerCase().contains("win")) {
-            CWD = CWD_WIN + userId + "\\";
-        } else if (OS.toLowerCase().contains("nux")) {
-            CWD = CWD_NIX + userId + "/";
-        } else {
-            CWD = null;
-        }
-        return CWD;
-    }
-
-    
-    private String getRLocation() {
-        String OS = System.getProperty("os.name");
-        String RPROGLOCAL;
-
-        if (OS.toLowerCase().contains("win")) {
-            RPROGLOCAL = RPROGLOCAL_WIN;
-        } else if (OS.toLowerCase().contains("nux")) {
-            RPROGLOCAL = RPROGLOCAL_NIX;
-        } else {
-            RPROGLOCAL = null;
-        }
-        return RPROGLOCAL;
+        return userSessionDir;
     }
 }
