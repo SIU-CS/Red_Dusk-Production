@@ -34,19 +34,19 @@
 
         <div class="container">
             <!-- Change out action for actual create account page/function -->
-            <form action="/action_page.php">
+            <form action="Account_Creation_Servlet" method="POST">
                 <h2>Create New Account</h2>
-                <label for="usrname">First Name</label>
-                <input type="text" id="first" name="first" required>
+                <label for="username">First Name</label>
+                <input type="text" id="firstname" name="firstname" required>
 
-                <label for="usrname">Last Name</label>
-                <input type="text" id="last" name="last" required>
+                <label for="username">Last Name</label>
+                <input type="text" id="lastname" name="lastname" required>
 
-                <label for="usrname">Email</label>
-                <input type="text" id="usrname" name="usrname" required>
+                <label for="username">Email</label>
+                <input type="email" id="username" name="username" required>
 
-                <label for="psw">Password</label>
-                <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, one special character, and must be between 7-30 characters" required>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, one special character, and must be between 7-30 characters" required>
 
                 <input type="submit" value="Submit">
             </form>

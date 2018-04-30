@@ -36,13 +36,13 @@
                     <input type="file" id="csvfile"/>
 
                 </div>
-                <div id="editor_container"><div id="editor">${r_input}</div> <textarea name="editor" id="code_input"></textarea></div>
+                <div id="editor_container"><div id="editor">${r_input}</div> <textarea name="editor" id="code_input">${r_input}</textarea></div>
                 <div id="output_container"><textarea id="code_output" readonly>${r_output}</textarea></div>
             </form>
         </div>
 
         <div id="graphMain" class="tabcontent">
-
+            
             <c:forEach var="picture" items="${pictureList}">
                 <img src = "Image_Servlet?pictureItem=${picture}"/>
             </c:forEach>

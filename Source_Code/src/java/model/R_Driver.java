@@ -19,18 +19,13 @@ import java.util.logging.Logger;
  * @author RED DUSK ENTERPRISES
  */
 public class R_Driver {
+    private final String CWD = "/bin/Red_Dusk-Production/Source_Code/R_Workspace/";
     //Just as R is too stubborn to give me output, I am to stubborn to remove
     //the logfile it refuses to send output to :/
 
     //The CWD for when the R process is built
     static private File sessionDir;
 
-    //This is the file path to get to the R executable file
-    private final String RPROGLOCAL_NIX = "/usr/bin/R";
-    private final String CWD_NIX = "/home/amcowden97/Workspaces/tempDir/";
-    private final String RPROGLOCAL_WIN = "C:\\Program Files\\R\\R-3.4.3\\bin\\i386\\R.exe";
-    private final String CWD_WIN = "C:\\Red_Dusk-Production\\Easy R-IDEr Project Build\\Easy R-IDEr\\R-Workspace\\";
-    
     /**
      * The driver method that takes in a string of arguments for an input file,
      * output file, and CWD for a clients session. The driver takes the input
@@ -47,21 +42,8 @@ public class R_Driver {
      */
     public String interpretCode(String inputFileName, String userId) throws InterruptedException {
     	//Locations of Current Working Directory and R terminal
-    	String RPROGLOCAL;
-        String CWD;
-        
-        //Sets the above locations depending on OS
-    	String OS = System.getProperty("os.name");
-    	if( OS.toLowerCase().contains("win")) {
-    		RPROGLOCAL = RPROGLOCAL_WIN;
-    		CWD = CWD_WIN+userId+"\\";
-    	}else if(OS.toLowerCase().contains("nux")){
-    		RPROGLOCAL = RPROGLOCAL_NIX;
-    		CWD = CWD_NIX+userId+"/";
-    	}else {
-    		RPROGLOCAL = null;
-    		CWD = null;
-    	} 
+        String userSessionDir = CWD+userId+"/";
+        //System.out.println(CWD+"\n"+RPROGLOCAL);
         //------------------------------------------------------------------------------------
         //TAKES ARGUMENTS AND RUNS SPECIFIED RSCRIPT IN SPECIFIED CWD TO SPECIFIED OUTPUT FILE
         //------------------------------------------------------------------------------------
@@ -69,30 +51,68 @@ public class R_Driver {
         //Trys to run the program without failure to build the process and with the
         //correct number of arguments.
         //Uses arguments to generate CWD, inputFileName, and outputFileName for the rBuilder.
-        sessionDir = new File(CWD);
-        String outputFileName = "outputFile.txt";
-
-        //Process builder that constructs the process necessary to run R.
-        ProcessBuilder rBuilder = new ProcessBuilder(RPROGLOCAL, "CMD", "BATCH", "--slave", "--vanilla", inputFileName, outputFileName);
-
-        //Sets CWD and vainly attempts to set up a logfile.
-        rBuilder.directory(sessionDir);
-        //rBuilder.redirectOutput(logFile);
-
-        Process rRunner;
+        sessionDir = new File(userSessionDir);
+        
+        File dockerFile = new File(userSessionDir+"DockerFile");
         try {
-            //Runs the process after full construction.
-            rRunner = rBuilder.start();
-
-            //Insure that the above process has fully executed and the output file is complete
-            rRunner.waitFor();
+            FileWriter writer = new FileWriter(dockerFile);
+            writer.write("FROM rocker/r-devel-san\n" + 
+            "\n" + 
+            "COPY . /usr/local/src/myscripts\n" +
+            "\n" +
+            "WORKDIR /usr/local/src/myscripts\n" +
+            "\n" +
+            "CMD [\"R\", \"CMD\", \"BATCH\", \"--slave\", \"--vanilla\", \"RFILE.R\", \"outputFile.txt\"]");
+            writer.close();
         } catch (IOException ex) {
-            Logger.getLogger(R_Driver.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+        }
+        
+        String outputFileName = "outputFile.txt";
+        
+        try {
+            //Initializes the process builder with initial command: build our docker image
+            ProcessBuilder rBuilder = new ProcessBuilder("docker", "build", "-t", userId.toLowerCase(), "-f", "DockerFile", ".");
+            
+            //Sets CWD for the docker process that will follow.
+            rBuilder.directory(sessionDir);
+            
+            //Init rRunner (The process handle)
+            Process rRunner;
+            //The handle we will use for docker images and containers
+            String dockerHandle = userId.toLowerCase();
+            
+            //Creates the docker image for this user
+            rRunner = rBuilder.start();
+            rRunner.waitFor();
+            
+            //Creates and runs the docker container that runs R
+            rBuilder.command("docker", "run", "--name="+dockerHandle, userId.toLowerCase());
+            rRunner = rBuilder.start();
+            rRunner.waitFor();
+            
+            //Copies all files from the user's session back to their session directory
+            rBuilder.command("docker", "cp", dockerHandle+":/usr/local/src/myscripts/.", ".");
+            rRunner = rBuilder.start();
+            rRunner.waitFor();
+            
+            //Prunes the user's container post copy
+            rBuilder.command("docker", "rm", "--force", dockerHandle);
+            rRunner = rBuilder.start();
+            rRunner.waitFor();
+            
+            //Prunes the user's image post copy
+            rBuilder.command("docker", "rmi", "--force", dockerHandle);
+            rRunner = rBuilder.start();
+            rRunner.waitFor();
+            
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
 
         //Creates the CWD string, outputFile object, and the fileReader to begin
         //file clean up.
-        File outputFile = new File(CWD + outputFileName);
+        File outputFile = new File(userSessionDir + outputFileName);
         BufferedReader fileReader;
         String newFileContents = "";
 
