@@ -3,13 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Red_Dusk-Production/Source_Code/src/java/model/R_Driver.java</file>
-            <file>file:/C:/Red_Dusk-Production/Source_Code/src/java/controller/Account_Creation_Servlet.java</file>
-            <file>file:/C:/Red_Dusk-Production/Source_Code/web/Login_Page.jsp</file>
-            <file>file:/C:/Red_Dusk-Production/Source_Code/src/java/model/CWD_Manager.java</file>
-            <file>file:/C:/Red_Dusk-Production/Source_Code/src/java/controller/Interpreter_Servlet.java</file>
-            <file>file:/C:/Red_Dusk-Production/Source_Code/nbproject/build-impl.xml</file>
-            <file>file:/C:/Red_Dusk-Production/Source_Code/web/Interpreter_Page.jsp</file>
+            <file>file:/bin/Red_Dusk-Production/Source_Code/src/java/model/CWD_Manager.java</file>
+            <file>file:/bin/Red_Dusk-Production/Source_Code/src/java/model/R_Driver.java</file>
+            <file>file:/bin/Red_Dusk-Production/Source_Code/src/java/controller/Janitor.java</file>
+            <file>file:/bin/Red_Dusk-Production/Source_Code/web/WEB-INF/web.xml</file>
+            <file>file:/bin/Red_Dusk-Production/Source_Code/src/java/controller/Account_Creation_Servlet.java</file>
         </group>
     </open-files>
 </project-private>

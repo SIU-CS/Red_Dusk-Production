@@ -96,16 +96,6 @@ public class R_Driver {
             rRunner = rBuilder.start();
             rRunner.waitFor();
             
-            //Prunes the user's container post copy
-            rBuilder.command("docker", "rm", "--force", dockerHandle);
-            rRunner = rBuilder.start();
-            rRunner.waitFor();
-            
-            //Prunes the user's image post copy
-            rBuilder.command("docker", "rmi", "--force", dockerHandle);
-            rRunner = rBuilder.start();
-            rRunner.waitFor();
-            
         } catch (IOException ex) {
             ex.printStackTrace();
         }

@@ -89,28 +89,6 @@ public class CWD_Manager {
         }
         return null;
     }
-
-    
-    public void killSession(String userId) {
-        String userSessionDir = getCWD(userId);
-
-        File targetDir = new File(userSessionDir);
-        nukeDir(targetDir);
-    }
-
-    
-    private void nukeDir(File targetDir) {
-        if (!targetDir.delete()) {
-            File[] targetFiles = targetDir.listFiles();
-            for (File targetFile : targetFiles) {
-                nukeDir(targetFile);
-            }
-        } else {
-            return;
-        }
-        targetDir.delete();
-    }
-
     
     private String getCWD(String userId) {
         String OS = System.getProperty("os.name");
