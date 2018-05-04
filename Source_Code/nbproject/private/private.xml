@@ -12,10 +12,18 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/bin/Red_Dusk-Production/Source_Code/web/Create_Account_Page.jsp</file>
             <file>file:/bin/Red_Dusk-Production/Source_Code/web/My_Rides_Page.jsp</file>
             <file>file:/bin/Red_Dusk-Production/Source_Code/web/Interpreter_Page.jsp</file>
             <file>file:/bin/Red_Dusk-Production/Source_Code/web/Login_Page.jsp</file>
+=======
+            <file>file:/bin/Red_Dusk-Production/Source_Code/src/java/model/CWD_Manager.java</file>
+            <file>file:/bin/Red_Dusk-Production/Source_Code/src/java/model/R_Driver.java</file>
+            <file>file:/bin/Red_Dusk-Production/Source_Code/src/java/controller/Janitor.java</file>
+            <file>file:/bin/Red_Dusk-Production/Source_Code/web/WEB-INF/web.xml</file>
+            <file>file:/bin/Red_Dusk-Production/Source_Code/src/java/controller/Account_Creation_Servlet.java</file>
+>>>>>>> 0348ca09d2884c8029756f16c47fa9a31b4ca4ed
         </group>
     </open-files>
 </project-private>

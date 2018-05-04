@@ -62,6 +62,7 @@ public class CWD_Manager {
         System.out.println("We got here boys...");
         return true;
     }
+<<<<<<< HEAD
 
     public void killSession(String userId) {
         String userSessionDir = getCWD(userId);
@@ -82,6 +83,9 @@ public class CWD_Manager {
         targetDir.delete();
     }
 
+=======
+    
+>>>>>>> 0348ca09d2884c8029756f16c47fa9a31b4ca4ed
     private String getCWD(String userId) {
         return CWD + userId + "/";
     }

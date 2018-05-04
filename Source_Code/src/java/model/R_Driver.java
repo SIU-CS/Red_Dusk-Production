@@ -76,6 +76,7 @@ public class R_Driver {
             rRunner = rBuilder.start();
             rRunner.waitFor();
             
+<<<<<<< HEAD
             //Creates and runs the docker container that runs R
             rBuilder.command("docker", "start", "-a", dockerHandle);
             rRunner = rBuilder.start();
@@ -86,6 +87,8 @@ public class R_Driver {
             rRunner = rBuilder.start();
             rRunner.waitFor();
 
+=======
+>>>>>>> 0348ca09d2884c8029756f16c47fa9a31b4ca4ed
         } catch (IOException ex) {
             ex.printStackTrace();
         }
