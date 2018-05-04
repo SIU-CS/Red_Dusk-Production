@@ -19,6 +19,7 @@ import java.util.logging.Logger;
  * @author RED DUSK ENTERPRISES
  */
 public class R_Driver {
+
     private final String CWD = "/bin/Red_Dusk-Production/Source_Code/R_Workspace/";
     //Just as R is too stubborn to give me output, I am to stubborn to remove
     //the logfile it refuses to send output to :/
@@ -36,13 +37,13 @@ public class R_Driver {
      *
      * NOTE:: For testing, supply arguments RFiles\\ Rscript.R rout.rout
      * @param userId
-     * @return 
+     * @return
      * @throws InterruptedException : If the R Runner Script is interrupted mid
      * Execution
      */
     public String interpretCode(String inputFileName, String userId) throws InterruptedException {
-    	//Locations of Current Working Directory and R terminal
-        String userSessionDir = CWD+userId+"/";
+        //Locations of Current Working Directory and R terminal
+        String userSessionDir = CWD + userId + "/";
         //System.out.println(CWD+"\n"+RPROGLOCAL);
         //------------------------------------------------------------------------------------
         //TAKES ARGUMENTS AND RUNS SPECIFIED RSCRIPT IN SPECIFIED CWD TO SPECIFIED OUTPUT FILE
@@ -52,60 +53,39 @@ public class R_Driver {
         //correct number of arguments.
         //Uses arguments to generate CWD, inputFileName, and outputFileName for the rBuilder.
         sessionDir = new File(userSessionDir);
-        
-        File dockerFile = new File(userSessionDir+"DockerFile");
-        try {
-            FileWriter writer = new FileWriter(dockerFile);
-            writer.write("FROM rocker/r-devel-san\n" + 
-            "\n" + 
-            "COPY . /usr/local/src/myscripts\n" +
-            "\n" +
-            "WORKDIR /usr/local/src/myscripts\n" +
-            "\n" +
-            "CMD [\"R\", \"CMD\", \"BATCH\", \"--slave\", \"--vanilla\", \"RFILE.R\", \"outputFile.txt\"]");
-            writer.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        
         String outputFileName = "outputFile.txt";
         
+        //The handle we will use for docker images and containers
+        String dockerHandle = userId.toLowerCase();
+
         try {
-            //Initializes the process builder with initial command: build our docker image
-            ProcessBuilder rBuilder = new ProcessBuilder("docker", "build", "-t", userId.toLowerCase(), "-f", "DockerFile", ".");
-            
+            //Initializes the process builder with initial command: build our docker image rsuper
+            ProcessBuilder rBuilder = new ProcessBuilder("docker", "create", "--name="+dockerHandle, "rsuper");
+
             //Sets CWD for the docker process that will follow.
             rBuilder.directory(sessionDir);
-            
+
             //Init rRunner (The process handle)
             Process rRunner;
-            //The handle we will use for docker images and containers
-            String dockerHandle = userId.toLowerCase();
             
             //Creates the docker image for this user
             rRunner = rBuilder.start();
             rRunner.waitFor();
+
+            rBuilder.command("docker", "cp", ".", dockerHandle + ":/usr/local/src/myscripts/.");
+            rRunner = rBuilder.start();
+            rRunner.waitFor();
             
             //Creates and runs the docker container that runs R
-            rBuilder.command("docker", "run", "--name="+dockerHandle, userId.toLowerCase());
+            rBuilder.command("docker", "start", "-a", dockerHandle);
             rRunner = rBuilder.start();
             rRunner.waitFor();
-            
+
             //Copies all files from the user's session back to their session directory
-            rBuilder.command("docker", "cp", dockerHandle+":/usr/local/src/myscripts/.", ".");
+            rBuilder.command("docker", "cp", dockerHandle + ":/usr/local/src/myscripts/.", ".");
             rRunner = rBuilder.start();
             rRunner.waitFor();
-            
-            //Prunes the user's container post copy
-            rBuilder.command("docker", "rm", "--force", dockerHandle);
-            rRunner = rBuilder.start();
-            rRunner.waitFor();
-            
-            //Prunes the user's image post copy
-            rBuilder.command("docker", "rmi", "--force", dockerHandle);
-            rRunner = rBuilder.start();
-            rRunner.waitFor();
-            
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }

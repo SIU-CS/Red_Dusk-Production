@@ -32,7 +32,6 @@ public class Database_Manager {
         }
     }
 
-    
     public boolean addAccount(String firstName, String lastName, String username, String password) {
         try {
             String sql = "INSERT INTO Account_Info (firstName, lastName, username, password)"
@@ -59,7 +58,7 @@ public class Database_Manager {
             ResultSet rs = preparedStatement.executeQuery(sql);
 
             //Get Query Results
-            if (rs.next()) {
+            while (rs.next()) {
                 String username = rs.getString("username");
                 String password = rs.getString("password");
                 String firstName = rs.getString("firstname");
@@ -75,31 +74,99 @@ public class Database_Manager {
             return null;
         }
     }
-    
-    public String listUserFiles(String username) {
+
+    public boolean saveFile(String user, String fileName, String dataFile) {
         try {
-            String queryResults = "";
-            String sql = "SELECT * FROM R_File WHERE file_owner = ?";
+            String sql = "INSERT INTO R_File (file_owner, file_name, data_file, last_modified)"
+                    + "VALUES (?, ?, ?, ?)";
+
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            ResultSet rs = preparedStatement.executeQuery(sql);
-            preparedStatement.setString(0, username);
-
-            //Get Query Results
-           /* if (rs.next()) {
-                String username = rs.getString("file_name");
-                String password = rs.getString("last_modified");
-                queryResults += "Username: " + username + "\nPassword: " + password
-                        + "\nFirst Name: " + firstName + "\nLast Name: " + lastName;
-            }*/
-
-            return queryResults;
-
+            preparedStatement.setString(1, user);
+            preparedStatement.setString(2, fileName);
+            preparedStatement.setString(3, dataFile);
+            preparedStatement.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
+            System.out.println(System.currentTimeMillis());
+            preparedStatement.executeUpdate();
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(Database_Manager.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            return false;
         }
     }
 
+    public String listUserFiles(String user) {
+        try {
+            String queryResults = null;
+            String sql = "SELECT * FROM R_File WHERE file_owner = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, user);
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            //Get Query Results
+            while (rs.next()) {
+                String filename = rs.getString("file_name");
+                String date = rs.getTimestamp("last_modified").toString();
+                
+                //Display File List Result in JavaScript Table
+                if(queryResults == null){
+                    queryResults = filename + "," + date;
+                }else{
+                    queryResults += "," + filename + "," + date;
+                }
+            }
+            return queryResults;
+        } catch (SQLException ex) {
+            Logger.getLogger(Database_Manager.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.toString();
+        }
+    }
+    
+    public String listUserFilesDateSort(String user) {
+        try {
+            String queryResults = null;
+            String sql = "SELECT * FROM R_File WHERE file_owner = ? ORDER BY last_modified";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, user);
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            //Get Query Results
+            while (rs.next()) {
+                String filename = rs.getString("file_name");
+                String date = rs.getTimestamp("last_modified").toString();
+                
+                //Display File List Result in JavaScript Table
+                if(queryResults == null){
+                    queryResults = filename + "," + date;
+                }else{
+                    queryResults += "," + filename + "," + date;
+                }
+            }
+            return queryResults;
+        } catch (SQLException ex) {
+            Logger.getLogger(Database_Manager.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.toString();
+        }
+    }
+    
+    public String getUserFile(String user, String fileName){
+        try {
+            String data_file = "";
+            String sql = "SELECT * FROM R_File WHERE file_owner = ? AND file_name = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, user);
+            preparedStatement.setString(2, fileName);
+            ResultSet rs = preparedStatement.executeQuery();
+           
+            //Get Query Results
+            while (rs.next()) {
+                data_file = rs.getString("data_file");
+            }
+            return data_file;
+        } catch (SQLException ex) {
+            Logger.getLogger(Database_Manager.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.toString();
+        }
+    }
 
     public final Connection connectToDatabase() {
         try {

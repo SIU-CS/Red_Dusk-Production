@@ -57,7 +57,7 @@ public class Login_Servlet extends HttpServlet {
         //Create New JSP Page To Interpret R Code
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher jspDispatcher = request.getRequestDispatcher("/Login_Page.jsp");
-        request.setAttribute("error_output", ERRORMSG);
+        request.setAttribute("error",ERRORMSG);
         jspDispatcher.forward(request, response);
     }
 
@@ -90,7 +90,7 @@ public class Login_Servlet extends HttpServlet {
             Connection databaseConnection = loginWorker.connectToDatabase();
             if (databaseConnection == null) {
                 //Error Connecting to Database
-                final String ERRORMSG = "*Error: Connection to Database Not Established";
+                final String ERRORMSG = "*Error: Connection to Database Not Established*";
                 processErrorRequest(request, response, ERRORMSG);
             }
 
@@ -103,7 +103,7 @@ public class Login_Servlet extends HttpServlet {
                 processRequest(request, response);
             } else {
                 //Could Not Login
-                final String ERRORMSG = "*Incorrect Username or Password";
+                final String ERRORMSG = "*Incorrect Username or Password*";
                 processErrorRequest(request, response, ERRORMSG);
             }
         }

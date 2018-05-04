@@ -1,6 +1,8 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,17 +20,22 @@ public class Image_Servlet extends HttpServlet {
      *
      * @param request servlet request
      * @param response servlet response
-     * @param pictureArray
+     * @param pictureFile
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response,
-            byte[] pictureArray) throws ServletException, IOException {
-        response.setContentType("image/jpeg");
-        response.setContentLength(pictureArray.length);
-        response.getOutputStream().write(pictureArray);
+            File pictureFile) throws ServletException, IOException {
+
+        if (pictureFile.getName().endsWith(".pdf")) {
+            response.setHeader("Content-Type", getServletContext().getMimeType(pictureFile.getName()));
+            response.setHeader("Content-Length", String.valueOf(pictureFile.length()));
+            response.setHeader("Content-Disposition", "inline; filename=\"foo.pdf\"");
+            Files.copy(pictureFile.toPath(), response.getOutputStream());
+        }
     }
 
+    
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -43,7 +50,7 @@ public class Image_Servlet extends HttpServlet {
         HttpSession userSession = request.getSession();
         CWD_Manager pictureRetriever = new CWD_Manager();
         String pictureName = request.getParameter("pictureItem");
-        byte[] pictureArray = pictureRetriever.getPlot(pictureName, userSession.getId());
-        processRequest(request, response, pictureArray);
+        File pictureFile = pictureRetriever.getObjectFile(pictureName, userSession.getId());
+        processRequest(request, response, pictureFile);
     }
 }
