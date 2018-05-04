@@ -7,7 +7,17 @@ body, html {
     -moz-background-size: cover;
     -o-background-size: cover;
     -webkit-background-size: cover;
+}
 
+button {
+     background:none!important;
+     color:inherit;
+     border:none; 
+     padding:0!important;
+     font-family: "Helvetica";
+     float: right;
+     font-size: 18px;
+     font-weight: bold;
 }
 
 h1{
@@ -42,19 +52,41 @@ h2{
     text-align: center;
     padding-top: 2%;
     padding-bottom: 2%;
-    background-color: darkslategrey;
+    background-color: black;
     width: 100%;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
 }
 
-.submitBtn{
-    font-family: monospace;
-    background-color: darkslategrey; 
-    color: ghostwhite;
-    padding-top: 3%;
-    padding-left: 6%;
-} 
+/* Style all input fields */
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 2px;
+    margin-bottom: 5px;
+}
+
+/* Style the submit button */
+.colorBtn{
+    background-color: #4CAF50;
+    color: white;
+    width: 100%;
+}
+
+/* Style the container for inputs */
+.container {
+    background-color: #f1f1f1;
+    padding: 10px;
+    width: 50%;
+
+}
+
+#forgotPass{
+    padding: 8%;
+}
 
 #loginDiv{
     background-color: ghostwhite;
@@ -70,6 +102,10 @@ h2{
     float: right;
     flex: 1;
     border-radius: 6px;
+}
+
+#otherDiv input{
+    margin-left: 50%;
 }
 
 #mainContent{
@@ -116,5 +152,33 @@ nav ul li a:hover {
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
     background: rgba(255, 255, 255, 0.1);
     color: ghostwhite;
+}
+
+/* The alert message box */
+.alert {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-right: 5%;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
 }
 

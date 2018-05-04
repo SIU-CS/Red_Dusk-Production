@@ -11,17 +11,17 @@
         <nav>
             <ul>
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="Login_Page.jsp">Home</a>
                 </li>
                 <li>
                     <a href="https://github.com/SIU-CS/Red_Dusk-Production">Our Github</a>
                 </li>
                 <h1>EASY RIDER</h1>
                 <li>
-                    <a href="MyAccountPage.html">My Account</a>
+                    <a href="Interpreter_Page.jsp">Interpreter</a>
                 </li>
                 <li>
-                    <a href="MyRidesPage.html">My Rides</a>
+                    <a href="${pageContext.request.contextPath}/My_Rides_Servlet">My Rides</a>
                 </li>
             </ul>
         </nav>
@@ -33,9 +33,9 @@
         <p/>
 
         <div class="container">
-            <!-- Change out action for actual create account page/function -->
+            <h2>Create New Account</h2>
+            
             <form action="Account_Creation_Servlet" method="POST">
-                <h2>Create New Account</h2>
                 <label for="username">First Name</label>
                 <input type="text" id="firstname" name="firstname" required>
 
@@ -60,7 +60,5 @@
             <p id="special" class="invalid">A <b>special character</b></p>
             <p id="length" class="invalid">Length <b>must be between 7-30 characters</b></p>
         </div>
-
-
     </body>
 </html>

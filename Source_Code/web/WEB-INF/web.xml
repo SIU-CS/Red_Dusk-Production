@@ -7,9 +7,17 @@
         <servlet-name>Interpreter_Servlet</servlet-name>
         <servlet-class>controller.Interpreter_Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>File_Save_Servlet</servlet-name>
+        <servlet-class>controller.File_Save_Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Interpreter_Servlet</servlet-name>
         <url-pattern>/Interpreter_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>File_Save_Servlet</servlet-name>
+        <url-pattern>/File_Save_Servlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

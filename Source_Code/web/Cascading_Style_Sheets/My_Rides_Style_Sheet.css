@@ -10,7 +10,15 @@ body, html {
 
 }
 
-h1{
+#top {
+    background-color: white;
+}
+
+#buttons {
+    width: 340px;
+}
+
+h1 {
     color: ghostwhite;
     margin: 0;
     height: 15%;
@@ -19,10 +27,21 @@ h1{
     text-align: center;
     font-size: 60px;
     width: 100%;
-    border: 0;
     padding: 0;
-    display: inline;
+}
 
+h2{
+    height: 8%;
+    margin-top: 2%;
+    font-family: monospace;
+    margin: 0 auto;
+    margin-bottom: 2%;
+    color: ghostwhite;
+    text-align: center;
+    background-color: black;
+    width: 100%;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
 }
 
 nav {
@@ -60,14 +79,74 @@ nav ul li a:hover {
 
 div {
     margin: auto;
+    overflow:hidden;
+    height: 500px; 
+    border-color: white;
 }
 
+#right{
+    overflow-y: scroll;
+}
+
+table {
+    table-layout:fixed;
+    overflow-y: scroll;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+#profile1{
+    background-color: #f1f1f1;
+    font-size: 20px;
+}
+#profile1>td{
+    padding-top: 25px;
+
+}
+
+#profHead{
+    background-color: #f1f1f1;
+    font-size: 26px;
+    text-align: center;
+
+}
 /* Style the container for inputs */
 .container {
+    width: 80%;
+    height: 630px;
+    background-color: black;
+    margin: auto;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.left {
     background-color: #f1f1f1;
     padding: 10px;
-    width: 50%;
+    width: 30%;
+    height: 600px;
+    float: left;
+    border: 5px solid black;
+    border-radius: 20px;
+}
 
+.right {
+    margin-left: 15%;
+    background-color: #f1f1f1;
+    padding: 10px;
+    height: 600px;
+    border: 5px solid black;
+    border-radius: 20px;
 }
 
 @font-face{
